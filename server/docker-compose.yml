@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  plans-database:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: plans
+    ports:
+    - '5432:5432'
+    volumes:
+    - pg_data:/var/lib/posgresql/data
+
+volumes:
+  pg_data:
