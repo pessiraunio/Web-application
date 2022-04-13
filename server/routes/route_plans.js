@@ -6,11 +6,14 @@ import {
   getPlanById,
   getPlansByUserId,
   updatePlanById,
-  deletePlanById
+  deletePlanById,
+  getAllPlans
 } from '../controllers/con_plans.js'
 import verifyToken from '../middleware/verifyToken.js'
 
 const plansRouter = Router()
+
+plansRouter.get('/', getAllPlans)
 
 plansRouter.get('/:pid', getPlanById)
 

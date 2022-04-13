@@ -16,5 +16,5 @@ CREATE TABLE IF NOT EXISTS public.plans
     category character varying(50) COLLATE pg_catalog."default" NOT NULL,
     creator character varying(36) COLLATE pg_catalog."default" NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
-    CONSTRAINT users_pkey PRIMARY KEY (id)
+    CONSTRAINT plans_pkey PRIMARY KEY (id)
 );

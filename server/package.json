@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  
   "scripts": {
     "start": "node server.js",
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npx jest --forceExit",
@@ -30,8 +29,8 @@
   "devDependencies": {
     "eslint": "^8.7.0",
     "jest": "^27.5.1",
-    "pgtools": "^0.3.2",
     "nodemon": "^2.0.15",
+    "pgtools": "^0.3.2",
     "supertest": "^6.2.2"
   }
 }

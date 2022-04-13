@@ -5,6 +5,7 @@ import HttpError from '../models/http-error.js'
 import { 
         addPlan,
         deletePlanWithId,
+        findAllPlans,
         findPlanById,
         findPlansByUser,
         updatePlanWithId
@@ -39,7 +40,7 @@ const createPlan = async (req, res, next) => {
         return next (new HttpError('Invalid input', 422))
     }
 
-    const { title, description, address, creator} = req.body
+    const { title, description, category, creator} = req.body
     const newPlan = {
             id: v4(), //Using v4 from uuid to create an ID
             title,
@@ -107,11 +108,26 @@ const deletePlanById = async (req, res, next) => {
     
 }
 
+/* LISÄÄ OMINAISUUS ET TARKISTETAAN ONKO KÄYTTÄJÄ KIRJAUTUNEENA VAI EI JA SEN MUKAA NÄYTETÄÄ TIETOI */
+const getAllPlans = async (req, res, next) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return next(HttpError('Invalid values given, please check the data', 422))
+    }
+    const result = await findAllPlans()
+    if (!result) {
+        return next(new HttpError('Could not fetch plans.'), 404)
+    }
+    res.status(200).json({message: result})
+    
+}
+
 
 export {
     getPlanById,
     getPlansByUserId,
     createPlan,
     updatePlanById,
-    deletePlanById
+    deletePlanById,
+    getAllPlans
 }

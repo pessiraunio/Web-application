@@ -32,7 +32,7 @@ pool.query(`CREATE TABLE IF NOT EXISTS public.plans
     category character varying(20) COLLATE pg_catalog."default" NOT NULL,
     creator character varying(36) COLLATE pg_catalog."default" NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
-    CONSTRAINT places_pkey PRIMARY KEY (id)
+    CONSTRAINT plans_pkey PRIMARY KEY (id)
   )`, (error, results) => {
   if (error) {
     throw error
