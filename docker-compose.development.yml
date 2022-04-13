@@ -1,0 +1,33 @@
+version: '2.4'
+services:
+  frontend:
+    image: "plans/client"
+    ports:
+    - "80:80"
+    environment:
+      REACT_APP_BACKEND_URL: http://localhost:5000/api
+    restart: always
+  api:
+    image: "plans/api"
+    environment:
+      DB_NAME: plans
+      DB_USER: user
+      DB_HOST: db
+      DB_PASSWORD: pass
+      DB_PORT: 5432
+      JWT_KEY: "secret_development_key"
+    ports:
+      - "5000:5000"
+    restart: always
+  db:
+    image: "plans/db"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: plans
+    volumes: 
+      - /var/lib/postgresql/data
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"

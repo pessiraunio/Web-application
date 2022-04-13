@@ -44,5 +44,4 @@ app.listen(port, () => {
   console.log(`API is running on port ${port}`)
 })
 
-
 export default app

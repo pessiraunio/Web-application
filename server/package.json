@@ -8,6 +8,8 @@
     "start": "node server.js",
     "test": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npx jest --forceExit",
     "test:coverage": "cross-env NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npx jest --forceExit --coverage",
+    "lint": "npx eslint server.js controllers/*.js database/*.js middleware/*.js models/*.js routes/*.js",
+    "lint:fix": "npx eslint --fix server.js controllers/*.js database/*.js middleware/*.js models/*.js routes/*.js",
     "dev": "nodemon server.js"
   },
   "keywords": [],
@@ -27,10 +29,14 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "eslint": "^8.7.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
-    "pgtools": "^0.3.2",
     "supertest": "^6.2.2"
   }
 }
