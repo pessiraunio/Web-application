@@ -13,7 +13,7 @@ services:
       DB_NAME: plans
       DB_USER: user
       DB_HOST: db
-      DB_PASSWORD: pass
+      DB_PASSWORD: password
       DB_PORT: 5432
       JWT_KEY: "secret_development_key"
     ports:
@@ -23,7 +23,7 @@ services:
     image: "plans/db"
     environment:
       POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: plans
     volumes: 
       - /var/lib/postgresql/data

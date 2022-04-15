@@ -10,6 +10,7 @@ import AddPlan from './plans/pages/AddPlan';
 import UpdatePlan from './plans/pages/UpdatePlan';
 import Users from './users/pages/Users';
 import UserPlans from './plans/pages/UserPlans';
+import AllPlans from './plans/pages/AllPlans';
 import Authenticate from './users/pages/Authenticate';
 import MainNavigation from './shared/components/navigation/MainNavigation'
 import { AuthContext } from './shared/context/auth-context';
@@ -78,6 +79,9 @@ const App = () => {
         <Route path="/plans/:planId">
           <UpdatePlan />
         </Route>
+        <Route path="/all_plans">
+          <AllPlans />
+        </Route>
         <Redirect to="/" />
       </Switch>
     );
@@ -86,6 +90,9 @@ const App = () => {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/all_plans">
+          <AllPlans />
         </Route>
         <Route path="/:userId/plans" exact>
           <UserPlans />

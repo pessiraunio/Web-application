@@ -20,13 +20,16 @@ export const useHttpClient = () => {
 
       const data = await response.json();
 
+      //DEBUGGIINNGG
+      console.log(data)
+
       activeHttpRequests.current = activeHttpRequests.current.filter(
         reqCtrl => reqCtrl !== requestAbortController
       );
-
       if (!response.ok) {
         throw new Error(data.message)
       }
+    
       setIsLoading(false);
       return data;
       

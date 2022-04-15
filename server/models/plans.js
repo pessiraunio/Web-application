@@ -6,13 +6,14 @@ const addPlan = async (plan) => {
   console.log(result)
   return result.rows
 }
-const findAllPlans = async (loggedIn) => {
-  if (loggedIn) {
+const findAllPlans = async (req) => {
+  if (req.headers.authorization) {
     const plans = await pool.query('SELECT * FROM plans')
     console.log(plans)
     return plans.rows
   }
-  const plans = await pool.query('SELECT category FROM plans')
+  // If user does not have auth key, show only category
+  const plans = await pool.query('SELECT * FROM plans')
   console.log(plans)
   return plans.rows
 }

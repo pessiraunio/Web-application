@@ -107,16 +107,20 @@ const deletePlanById = async (req, res, next) => {
 }
 
 /* LISÄÄ OMINAISUUS ET TARKISTETAAN ONKO KÄYTTÄJÄ KIRJAUTUNEENA VAI EI JA SEN MUKAA NÄYTETÄÄ TIETOI */
+
+/* OISKO MITÄÄ JOS VAA TESTAA ET LÖYTYYKÖ ID DATABASESTA, TAI JOKU MUU MIETI MITEN ENNENKU TEEET,
+ESIM ONKO SAATAVILLA AUTHORIZATIONIA PARAMETREIS TMS */
+
 const getAllPlans = async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return next(HttpError('Invalid values given, please check the data', 422))
   }
-  const result = await findAllPlans()
-  if (!result) {
+  const plans = await findAllPlans(req)
+  if (!plans) {
     return next(new HttpError('Could not fetch plans.'), 404)
   }
-  res.status(200).json({ message: result })
+  res.status(200).json({ plans })
 }
 
 export {
