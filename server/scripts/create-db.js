@@ -3,7 +3,7 @@ import pgtools from 'pgtools'
 const config = {
   user: 'user',
   host: '127.0.0.1',
-  password: 'pass',
+  password: 'password',
   port: 5432
 }
 

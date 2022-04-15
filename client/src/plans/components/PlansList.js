@@ -7,6 +7,7 @@ import PlanItem from './PlanItem';
 import './PlansList.css';
 
 const PlansList = props => {
+
   if (props.items.length === 0) {
     return (
       <div className="plan-list center">
@@ -20,13 +21,13 @@ const PlansList = props => {
 
   return <ul className="plan-list">
     {props.items.map(plan => <PlanItem 
-      key={plan.id} 
-      id={plan.id} 
-      image={'https://visitylojarvi.fi/wp-content/uploads/2016/11/ylojarvi-seitseminen-nuotiopaikka.jpg'}
+      key={plan.id}
+      id={plan.id}
+      image={'https://www.mindpumpmedia.com/hubfs/2160%20x%201044_%20%281%29.png'}
       title={plan.title}
       description={plan.description}
       category={plan.category}
-      creatorId={plan.creatorId}
+      creatorId={plan.creator}
       onDelete={props.onDeleteplan}
       />
     )}

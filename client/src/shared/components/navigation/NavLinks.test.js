@@ -42,6 +42,7 @@ describe('Navigation Links', () => {
     expect(screen.getByRole('list')).toHaveClass('nav-links')
     expect(screen.getByText('ALL USERS')).toBeInTheDocument()
     expect(screen.getByText('ALL USERS')).toHaveAttribute('href', '/')
+    
 
     expect(screen.queryByText('AUTHENTICATE')).toBeNull()
 

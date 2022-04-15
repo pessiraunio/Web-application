@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../shared/context/auth-context';
 
 import PlansList from '../components/PlansList';
 import { useHttpClient } from '../../shared/hooks/http-hook'
@@ -8,29 +8,23 @@ import LoadingSpinner from '../../shared/components/loadingspinner/LoadingSpinne
 
 // 'https://visitylojarvi.fi/wp-content/uploads/2016/11/ylojarvi-seitseminen-nuotiopaikka.jpg'
 
-const UserPlans = props => {
+const AllPlans = props => {
+  const auth = useContext(AuthContext);
   const [loadedPlans, setLoadedPlans] = useState();
   const {isLoading, error, sendRequest, clearError} = useHttpClient();
-  const userId = useParams().userId;
   
   useEffect(() => {
     const fetchPlans = async () => {
       try {
         const response = await sendRequest(
-          `http://localhost:5000/api/plans/user/${userId}`
+          `http://localhost:5000/api/plans/all_plans`
         );
         setLoadedPlans(response.plans);
       } catch (err) {}
     }
     fetchPlans();
 
-  },[sendRequest, userId]);
-
-  const planDeletedHandler = (deletedPlanId) => {
-    setLoadedPlans(prevPlans => 
-      prevPlans.filter(plan => plan.id !== deletedPlanId)
-    )
-  };
+  },[sendRequest], auth.userId);
 
   return (
     <React.Fragment>
@@ -41,9 +35,9 @@ const UserPlans = props => {
         </div>
       )}
       {!isLoading && loadedPlans && 
-        <PlansList items={loadedPlans} onDeletePlan={planDeletedHandler} />}
+        <PlansList items={loadedPlans} />}
     </React.Fragment>
   );
 };
 
-export default UserPlans;
+export default AllPlans;

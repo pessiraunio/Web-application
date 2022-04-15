@@ -4,7 +4,7 @@ services:
     image: postgres:alpine
     environment:
       POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: plans
     ports:
     - '5432:5432'

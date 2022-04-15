@@ -13,7 +13,7 @@ import verifyToken from '../middleware/verifyToken.js'
 
 const plansRouter = Router()
 
-plansRouter.get('/', getAllPlans)
+plansRouter.get('/all_plans', getAllPlans)
 
 plansRouter.get('/:pid', getPlanById)
 
