@@ -25,9 +25,16 @@ const getUserByEmail = async (email) => {
   return user.rows[0]
 }
 
+const getUserById = async (id) => {
+  const user = await pool.query('SELECT name FROM users WHERE id=$1;', [id])
+  console.log(user)
+  return user.rows[0]
+}
+
 export {
   getAllUsers,
   getUserRowCountByEmail,
   addUser,
-  getUserByEmail
+  getUserByEmail,
+  getUserById
 }

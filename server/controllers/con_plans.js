@@ -39,13 +39,15 @@ const createPlan = async (req, res, next) => {
     return next(new HttpError('Invalid input', 422))
   }
 
-  const { title, description, category, creator } = req.body
+  const { title, description, category, creator, copied, originalowner } = req.body
   const newPlan = {
     id: v4(), // Using v4 from uuid to create an ID
     title,
     description,
     category,
-    creator
+    creator,
+    copied,
+    originalowner
   }
 
   const result = await addPlan(newPlan)

@@ -1,18 +1,12 @@
 import pool from '../database/db.js'
 
 const addPlan = async (plan) => {
-  const result = await pool.query('INSERT INTO plans (id, title, description, category, creator) VALUES ($1, $2, $3, $4, $5)',
-    [plan.id, plan.title, plan.description, plan.category, plan.creator])
+  const result = await pool.query('INSERT INTO plans (id, title, description, category, creator, copied, originalowner) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+    [plan.id, plan.title, plan.description, plan.category, plan.creator, plan.copied, plan.originalowner])
   console.log(result)
   return result.rows
 }
 const findAllPlans = async (req) => {
-  if (req.headers.authorization) {
-    const plans = await pool.query('SELECT * FROM plans')
-    console.log(plans)
-    return plans.rows
-  }
-  // If user does not have auth key, show only category
   const plans = await pool.query('SELECT * FROM plans')
   console.log(plans)
   return plans.rows

@@ -20,7 +20,7 @@ const UsersList = props => {
           id={user.id}
           image={'https://media.istockphoto.com/photos/fi/brasilialainen-liikemies-laskee-brasilian-valuuttaa-todellinen-id972220800?k=20&m=972220800&s=612x612&w=0&h=9jPF7yuby2yyDletsCfRzlmvKVOV7D5-3oyg6y40qII='}
           name={user.name}
-          placeCount={user.places}
+          planCount={user.plans}
         />
       ))}
     </ul>

@@ -37,7 +37,6 @@ const NewPlan = () => {
   );
 
   const history = useHistory();
-
   const planSubmitHandler = async event => {
     event.preventDefault();
     try {
@@ -45,7 +44,9 @@ const NewPlan = () => {
         title: formState.inputs.title.value,
         description: formState.inputs.description.value,
         category: formState.inputs.category.value,
-        creator: auth.userId
+        creator: auth.userId,
+        copied: false,
+        originalowner: auth.userId
       }),
       { 
         'Content-Type': 'application/json',
