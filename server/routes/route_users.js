@@ -1,11 +1,12 @@
 import { Router } from 'express'
 import { check } from 'express-validator'
 
-import { getUsers, signUpUser, logInUser } from '../controllers/con_users.js'
+import { getUsers, signUpUser, logInUser, getUsername } from '../controllers/con_users.js'
 
 const usersRouter = Router()
 
 usersRouter.get('/', getUsers)
+usersRouter.get('/:uid', getUsername)
 
 usersRouter.post(
   '/signup',

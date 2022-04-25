@@ -7,6 +7,8 @@ import Card from '../../shared/components/card/Card'
 import './UserItem.css';
 
 const UserItem = props => {
+  console.log(props.id)
+  console.log(props.placeCount)
   return (
     <li className="user-item">
       <Card className="user-item__content">
@@ -16,7 +18,7 @@ const UserItem = props => {
           </div>
           <div className='user-item__info'>
             <h2>{props.name}</h2>
-            <h3>{props.placeCount} {props.placeCount === 1 ? 'Place' : 'Places'}</h3>
+            <h3>{props.planCount} {props.planCount === 1 ? 'Plan' : 'Plans'}</h3>
           </div>
         </Link>
       </Card>

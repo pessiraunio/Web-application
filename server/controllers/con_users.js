@@ -7,7 +7,8 @@ import {
   getAllUsers,
   addUser,
   getUserRowCountByEmail,
-  getUserByEmail
+  getUserByEmail,
+  getUserById
 }
   from '../models/users.js'
 
@@ -15,6 +16,16 @@ const getUsers = async (req, res, next) => {
   const users = await getAllUsers()
 
   res.json({ users: users })
+}
+
+const getUsername = async (req, res, next) => {
+  const userId = req.params.uid
+  const user = await getUserById(userId)
+
+  if (!user) {
+    return next(new HttpError('Could not find a user for the provided id', 404))
+  }
+  res.json({ user: user.name })
 }
 
 const signUpUser = async (req, res, next) => {
@@ -121,6 +132,7 @@ const logInUser = async (req, res, next) => {
 export {
   getUsers,
   signUpUser,
-  logInUser
+  logInUser,
+  getUsername
 
 }

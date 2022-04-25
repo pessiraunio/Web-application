@@ -20,7 +20,7 @@ export const useHttpClient = () => {
 
       const data = await response.json();
 
-      //DEBUGGIINNGG
+      //DEBUGGIINNGG PURPOSES
       console.log(data)
 
       activeHttpRequests.current = activeHttpRequests.current.filter(

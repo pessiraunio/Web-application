@@ -7,7 +7,6 @@ import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import ErrorModal from '../../shared/components/modal/ErrorModal';
 import LoadingSpinner from '../../shared/components/loadingspinner/LoadingSpinner';
-
 import './PlanItem.css';
 
 const PlanItem = props => {
@@ -16,21 +15,48 @@ const PlanItem = props => {
 
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
+  const [showCopyModal, setShowCopyHandler] = useState(false);
+
+  const showCopyHandler = () => setShowCopyHandler(true);
+  const cancelCopyHandler = () => setShowCopyHandler(false);
   const showConfirmationHandler = () => setShowConfirmationModal(true);
   const cancelConfirmationHandler = () => setShowConfirmationModal(false);
 
-  const templateCopyfunction = async () => {
-    console.log("This function has no functionality yet")
-    for (const item in props) {
-      console.log(item)
-    }
-    console.log("user id: " + auth.userId )
-    console.log("prop id: " + props.creatorId)
+
+  const CopyPlan = async () => {
+    console.log("from prop " + props.id)
+    console.log("from auth " + auth.userId)
+    try {
+      await sendRequest('http://localhost:5000/api/plans/', 'POST', JSON.stringify({
+        title: props.title,
+        description: props.description,
+        category: props.category,
+        creator: auth.userId,
+        copied: true,
+        originalowner: props.originalowner
+      }),
+      { 
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + auth.token
+      })
+    } catch (err) {}
   }
 
+  const getOwnerUsername = (userId) => {
+    try {
+      sendRequest(`http://localhost:5000/api/users/${userId}`)
+    } catch (err) {}
   
+  };
+
+  //const data = getOwnerUsername(props.originalowner)
+
+  //console.log(data)
+
   const deleteConfirmedHandler = async () => {
     setShowConfirmationModal(false);
+    setShowCopyHandler(false);
+
     try {
       await sendRequest(
         `http://localhost:5000/api/plans/${props.id}`, 
@@ -46,12 +72,6 @@ const PlanItem = props => {
       <React.Fragment>
         <ErrorModal error={error} onClear={clearError}/>
         <Modal 
-          header={props.address}
-          contentClass="plan-item__modal-content"
-          footerClass="plan-item__modal-actions"
-        >
-        </Modal>
-        <Modal 
           show={showConfirmationModal}
           header="Are you sure?" 
           footerClass="plan-item__modal-actions"
@@ -64,6 +84,18 @@ const PlanItem = props => {
         >
           <p>Are you sure? Once it's gone, it's gone!</p>
         </Modal>
+        <Modal 
+          show={showCopyModal}
+          header="Copy success!" 
+          footerClass="plan-item__modal-actions"
+          footer={
+            <React.Fragment>
+              <Button inverse onClick={cancelCopyHandler}>Noted</Button>
+            </React.Fragment>
+          }
+        >
+          <p>Plan copied to your profile!</p>
+        </Modal>
         <li className="plan-item">
           {isLoading && <LoadingSpinner asOverlay/>}
           <Card className="plan-item__content">
@@ -73,8 +105,8 @@ const PlanItem = props => {
             <div className="plan-item__info">
               <h2>{props.title}</h2>
               <h2>{props.category}</h2>
-              <h3>{props.address}</h3>
-              <p>{props.description}</p>
+              <p>{props.category}</p>
+              <p>Owner: {props.originalowner}</p>
             </div>
             <div className="plan-item__actions">
               {auth.isLoggedIn && (
@@ -83,8 +115,8 @@ const PlanItem = props => {
               {auth.isLoggedIn && (
                 <Button danger onClick={showConfirmationHandler}>Delete</Button>
               )}
-              {auth.userId !== props.creatorId && (
-                <Button onClick={templateCopyfunction}>Copy this plan.</Button>
+              {auth.userId !== props.creatorId && auth.userId !== props.originalowner && (
+                <Button onClick={() => {showCopyHandler(); CopyPlan();}}>Copy this plan.</Button>
               )}
             </div>
           </Card>
@@ -96,12 +128,6 @@ const PlanItem = props => {
     return (
       <React.Fragment>
         <ErrorModal error={error} onClear={clearError}/>
-        <Modal 
-          header={props.address}
-          contentClass="plan-item__modal-content"
-          footerClass="plan-item__modal-actions"
-        >
-        </Modal>
         <Modal 
           show={showConfirmationModal}
           header="Log in first." 
@@ -117,8 +143,11 @@ const PlanItem = props => {
         <li className="plan-item">
           {isLoading && <LoadingSpinner asOverlay/>}
           <Card className="plan-item__content">
-            <div className="plan-item__image">
-              <img src={props.image} alt={props.title} />
+            <div className=".container">
+              <div className="plan-item__image">
+                <img src={props.image} alt={props.title}/>
+                <div className=".top-left">Owner:{props.originalowner}</div>
+              </div>
             </div>
             <div className="plan-item__info">
               <h2>{props.title}</h2>

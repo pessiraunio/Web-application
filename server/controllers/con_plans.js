@@ -10,6 +10,7 @@ import {
   findPlansByUser,
   updatePlanWithId
 } from '../models/plans.js'
+// import { getUserById } from '../models/users.js'
 
 const getPlanById = async (req, res, next) => {
   const planId = req.params.pid
@@ -33,20 +34,27 @@ const getPlansByUserId = async (req, res, next) => {
 }
 
 const createPlan = async (req, res, next) => {
-  console.log('Here we are!')
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return next(new HttpError('Invalid input', 422))
   }
 
-  const { title, description, category, creator } = req.body
+  console.log('uuuser' + req.userData.userId)
+
+  const { title, description, category, creator, copied, originalowner } = req.body
   const newPlan = {
     id: v4(), // Using v4 from uuid to create an ID
     title,
     description,
     category,
-    creator
+    creator,
+    copied,
+    originalowner
   }
+
+  /* if (newPlan.copied === false) {
+    newPlan.originalowner = getUserById(req.userData.userId)
+  } */
 
   const result = await addPlan(newPlan)
   if (!result) {
