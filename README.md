@@ -1,4 +1,4 @@
-## Available Scripts
+## Project description
 
 Web application for sport plan hosting. Add exercise plans and copy from others to your own account.
 
