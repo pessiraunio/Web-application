@@ -11,6 +11,7 @@ import './PlanItem.css';
 
 const PlanItem = props => {
   const auth = useContext(AuthContext);
+
   const {isLoading, error, sendRequest, clearError} = useHttpClient();
 
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -23,9 +24,8 @@ const PlanItem = props => {
   const cancelConfirmationHandler = () => setShowConfirmationModal(false);
 
 
+
   const CopyPlan = async () => {
-    console.log("from prop " + props.id)
-    console.log("from auth " + auth.userId)
     try {
       await sendRequest('http://localhost:5000/api/plans/', 'POST', JSON.stringify({
         title: props.title,
@@ -41,17 +41,6 @@ const PlanItem = props => {
       })
     } catch (err) {}
   }
-
-  const getOwnerUsername = (userId) => {
-    try {
-      sendRequest(`http://localhost:5000/api/users/${userId}`)
-    } catch (err) {}
-  
-  };
-
-  //const data = getOwnerUsername(props.originalowner)
-
-  //console.log(data)
 
   const deleteConfirmedHandler = async () => {
     setShowConfirmationModal(false);
