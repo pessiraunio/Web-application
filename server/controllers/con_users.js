@@ -25,7 +25,7 @@ const getUsername = async (req, res, next) => {
   if (!user) {
     return next(new HttpError('Could not find a user for the provided id', 404))
   }
-  res.json({ user })
+  res.json({ user: user.name })
 }
 
 const signUpUser = async (req, res, next) => {
