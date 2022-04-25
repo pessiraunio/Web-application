@@ -21,6 +21,8 @@ const App = () => {
   const [token, setToken] = useState(false);
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false)
+;
+
 
   const login = useCallback((uid, token, expirationDate) => {  //prevent a render loop
     setToken(token);

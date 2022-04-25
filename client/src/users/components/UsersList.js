@@ -18,7 +18,7 @@ const UsersList = props => {
         <UserItem 
           key={user.id}
           id={user.id}
-          image={'https://media.istockphoto.com/photos/fi/brasilialainen-liikemies-laskee-brasilian-valuuttaa-todellinen-id972220800?k=20&m=972220800&s=612x612&w=0&h=9jPF7yuby2yyDletsCfRzlmvKVOV7D5-3oyg6y40qII='}
+          image={'https://media.istockphoto.com/photos/healthy-young-man-standing-outdoors-in-park-picture-id629591998?k=20&m=629591998&s=612x612&w=0&h=23uip-HHtMW0tZJqteIogw3LC5MsMdFX-_Wv_76vhGY='}
           name={user.name}
           planCount={user.plans}
         />

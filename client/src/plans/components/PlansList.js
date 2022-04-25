@@ -18,23 +18,20 @@ const PlansList = props => {
       </div>
     );
   }
-  return <body>
-        
-              <ul className="plan-list">
-              {props.items.map(plan => <PlanItem 
-                key={plan.id}
-                id={plan.id}
-                image={'https://www.mindpumpmedia.com/hubfs/2160%20x%201044_%20%281%29.png'}
-                title={plan.title}
-                description={plan.description}
-                category={plan.category}
-                creatorId={plan.creator}
-                originalowner={plan.originalowner}
-                onDelete={props.onDeleteplan}
-                />
-              )}
-              </ul>
-    </body>;
+  return <ul className="plan-list">
+    {props.items.map(plan => <PlanItem 
+      key={plan.id}
+      id={plan.id}
+      image={'https://www.mindpumpmedia.com/hubfs/2160%20x%201044_%20%281%29.png'}
+      title={plan.title}
+      description={plan.description}
+      category={plan.category}
+      creatorId={plan.creator}
+      originalowner={plan.originalowner}
+      onDelete={props.onDeleteplan}
+      />
+    )}
+  </ul>
 };
 
 export default PlansList;
