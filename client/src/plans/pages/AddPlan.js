@@ -86,12 +86,6 @@ const NewPlan = () => {
           errorText="Please enter a valid category."
           onInput={inputHandler}
         />
-        <label htmlFor="plan">Upload plan
-        </label>
-          <input type="file"
-            id="plan" name="plan"
-            accept=".xlsx">
-          </input>
         <Button type="submit" disabled={!formState.isValid}>
           Add plan
         </Button>
