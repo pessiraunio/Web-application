@@ -39,7 +39,7 @@ const UpdatePlan = () => {
     const fetchPlan = async () => {
       try {
         const repsponse = await sendRequest(
-          `http://localhost:5000/api/plans/${planId}`
+          `${process.env.REACT_APP_BACKEND_URL}/plans/${planId}`
         );
         setLoadedPlan(repsponse.plan);
         setFormData(
@@ -66,7 +66,7 @@ const UpdatePlan = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/plans/${planId}`, 
+        `${process.env.REACT_APP_BACKEND_URL}/plans/${planId}`, 
         'PATCH',
         JSON.stringify({
           title: formState.inputs.title.value,

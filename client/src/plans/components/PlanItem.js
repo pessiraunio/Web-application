@@ -27,7 +27,7 @@ const PlanItem = props => {
 
   const CopyPlan = async () => {
     try {
-      await sendRequest('http://localhost:5000/api/plans/', 'POST', JSON.stringify({
+      await sendRequest(process.env.REACT_APP_BACKEND_URL + '/plans/', 'POST', JSON.stringify({
         title: props.title,
         description: props.description,
         category: props.category,
@@ -48,7 +48,7 @@ const PlanItem = props => {
 
     try {
       await sendRequest(
-        `http://localhost:5000/api/plans/${props.id}`, 
+        `${process.env.REACT_APP_BACKEND_URL}/plans/${props.id}`, 
         'DELETE',
         null, // No body
         { Authorization: 'Bearer ' + auth.token }
