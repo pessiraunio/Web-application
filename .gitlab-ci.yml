@@ -1,6 +1,6 @@
 variables:
   REMOTE_HOST: deploy@172.16.4.120
-  REMOTE_DIR: plan_app
+  REMOTE_DIR: app
 stages:
   - test
   - build
@@ -98,5 +98,5 @@ deploy_job:
         docker-compose up -d --force-recreate
         `
   only:
-    - main
+    - main  
   when: manual
