@@ -21,3 +21,5 @@ yarn-error.log*
 server/.env
 
 nodemon.json
+
+docker-compose.yml
