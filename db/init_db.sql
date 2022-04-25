@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS public.plans
     description character varying(300) COLLATE pg_catalog."default" NOT NULL,
     category character varying(50) COLLATE pg_catalog."default" NOT NULL,
     creator character varying(36) COLLATE pg_catalog."default" NOT NULL,
+    copied boolean NOT NULL,
+    originalowner character varying(36) COLLATE pg_catalog."default" NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
     CONSTRAINT plans_pkey PRIMARY KEY (id)
 );
