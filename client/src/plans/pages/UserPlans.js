@@ -17,7 +17,7 @@ const UserPlans = props => {
     const fetchPlans = async () => {
       try {
         const response = await sendRequest(
-          `http://localhost:5000/api/plans/user/${userId}`
+          `${process.env.REACT_APP_BACKEND_URL}/plans/user/${userId}`
         );
         setLoadedPlans(response.plans);
       } catch (err) {}

@@ -40,7 +40,7 @@ const NewPlan = () => {
   const planSubmitHandler = async event => {
     event.preventDefault();
     try {
-      await sendRequest('http://localhost:5000/api/plans/', 'POST', JSON.stringify({
+      await sendRequest(process.env.REACT_APP_BACKEND_URL + '/plans/', 'POST', JSON.stringify({
         title: formState.inputs.title.value,
         description: formState.inputs.description.value,
         category: formState.inputs.category.value,
