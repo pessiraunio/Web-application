@@ -1,6 +1,6 @@
 variables:
   REMOTE_HOST: deploy@172.16.4.120
-  REMOTE_DIR: project
+  REMOTE_DIR: plan_app
 stages:
   - test
   - build
