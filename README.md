@@ -22,8 +22,19 @@ npm install
 
 ### set up database
 
-Go to project directory
+Go to project directory and run command
 
+docker-compose up
+
+Initialize database for testing.
+
+cd /server
+node server/scripts/init_db.js
+
+
+### `npm run dev`
+
+Run development server.
 
 
 ### cd client `npm start`
@@ -33,15 +44,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm run dev`
-
-Runs development server.
-
-### `docker-compose up`
-
-Start docker for database.
-
-### `node server/scripts/init_db.js`
-
-Initialize database for testing.
