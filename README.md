@@ -2,11 +2,19 @@
 
 Web application for sport plan hosting. Add exercise plans and copy from others to your own account.
 
-## Available Scripts
+### How to run
 
-In the project directory, you can run:
+## Install packages
 
-### `npm start`
+In the project directory
+
+cd /server
+npm install
+cd ..
+cd /client
+npm install
+
+### cd client `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
