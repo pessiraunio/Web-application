@@ -4,6 +4,12 @@ Web application for sport plan hosting. Add exercise plans and copy from others 
 
 ### How to run
 
+## Prequisities
+
+docker installed
+nodejs installed
+
+
 ## Install packages
 
 In the project directory
@@ -13,6 +19,12 @@ npm install
 cd ..
 cd /client
 npm install
+
+### set up database
+
+Go to project directory
+
+
 
 ### cd client `npm start`
 
