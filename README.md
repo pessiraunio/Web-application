@@ -1,5 +1,7 @@
 ## Project description
 
+A web application developed as part of a course project during my B.Sc. in Information Technology.
+
 Web application for sport plan hosting. Add exercise plans and copy from others to your own account.
 
 ### How to run
